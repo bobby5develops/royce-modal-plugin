@@ -86,7 +86,7 @@ textarea {
 
 
 /* Modal Base CSS */
-.scotch-overlay
+.royce-overlay
 {
     position: fixed;
     z-index: 9998;
@@ -107,7 +107,7 @@ textarea {
     background: rgba(0,0,0,.6);
 }
 
-.scotch-modal
+.royce-modal
 {
     position: absolute;
     z-index: 9999;
@@ -135,7 +135,7 @@ textarea {
     background: #fff;
 }
 
-.scotch-modal.scotch-open.scotch-anchored
+.royce-modal.royce-open.royce-anchored
 {
     top: 20px;
 
@@ -146,19 +146,19 @@ textarea {
     transform: translate(-50%, 0);
 }
 
-.scotch-modal.scotch-open
+.royce-modal.royce-open
 {
     opacity: 1;
 }
 
-.scotch-overlay.scotch-open
+.royce-overlay.royce-open
 {
     opacity: 1;
 
 }
 
 /* Close Button */
-.scotch-close
+.royce-close
 {
     font-family: Helvetica,Arial,sans-serif;
     font-size: 24px;
@@ -179,21 +179,21 @@ textarea {
     background: #e74c3c;
 }
 
-.scotch-close:hover
+.royce-close:hover
 {
     background: #c0392b;
 }
 
 /* Default Animation */
 
-.scotch-overlay.fade-and-drop
+.royce-overlay.fade-and-drop
 {
     display: block;
 
     opacity: 0;
 }
 
-.scotch-modal.fade-and-drop
+.royce-modal.fade-and-drop
 {
     top: -300%;
 
@@ -202,7 +202,7 @@ textarea {
     display: block;
 }
 
-.scotch-modal.fade-and-drop.scotch-open
+.royce-modal.fade-and-drop.royce-open
 {
     top: 50%;
 
@@ -213,7 +213,7 @@ textarea {
     transition: 500ms top 500ms ease;
 }
 
-.scotch-modal.fade-and-drop.scotch-open.scotch-anchored
+.royce-modal.fade-and-drop.royce-open.royce-anchored
 {
 
     -webkit-transition: 500ms top 500ms ease;
@@ -223,7 +223,7 @@ textarea {
     transition: 500ms top 500ms ease;
 }
 
-.scotch-overlay.fade-and-drop.scotch-open
+.royce-overlay.fade-and-drop.royce-open
 {
     top: 0;
 
@@ -236,7 +236,7 @@ textarea {
     opacity: 1;
 }
 
-.scotch-modal.fade-and-drop
+.royce-modal.fade-and-drop
 {
     -webkit-transition: 500ms top ease;
     -moz-transition: 500ms top ease;
@@ -245,7 +245,7 @@ textarea {
     transition: 500ms top ease;
 }
 
-.scotch-overlay.fade-and-drop
+.royce-overlay.fade-and-drop
 {
     -webkit-transition: 500ms opacity 500ms ease;
     -moz-transition: 500ms opacity 500ms ease;
