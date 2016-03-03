@@ -1,7 +1,7 @@
+
 // Create an immediately invoked functional expression to wrap our code
 (function() {
-
-    // Define our constructor
+    // Define our constructor object
     this.Modal = function() {
 
         // Create global element references
@@ -18,20 +18,19 @@
             className: 'fade-and-drop',
             closeButton: true,
             content: "",
-            maxWidth: 600,
-            minWidth: 280,
+            maxWidth: 700,
+            minWidth: 300,
             overlay: true
         }
 
-        // Create options by extending defaults with the passed in arugments
+        // Create options by extending defaults with the passed in arguments
         if (arguments[0] && typeof arguments[0] === "object") {
             this.options = extendDefaults(defaults, arguments[0]);
         }
 
         if(this.options.autoOpen === true) this.open();
 
-    }
-
+    };
     // Public Methods
 
     Modal.prototype.close = function() {
@@ -45,7 +44,7 @@
         this.overlay.addEventListener(this.transitionEnd, function() {
             if(_.overlay.parentNode) _.overlay.parentNode.removeChild(_.overlay);
         });
-    }
+    };
 
     Modal.prototype.open = function() {
         buildOut.call(this);
@@ -55,27 +54,28 @@
             (this.modal.offsetHeight > window.innerHeight ?
                 " royce-open royce-anchored" : " royce-open");
         this.overlay.className = this.overlay.className + " royce-open";
-    }
+    };
 
     // Private Methods
 
     function buildOut() {
 
-        var content, contentHolder, docFrag;
+        var content, contentHolder, docFragment;
 
         /*
          * If content is an HTML string, append the HTML string.
-         * If content is a domNode, append its content.
+         * If content is a domNode, append it's content.
+         * If content is a ajax request, append it's content.
          */
 
         if (typeof this.options.content === "string") {
             content = this.options.content;
-        } else {
+        }else{
             content = this.options.content.innerHTML;
         }
 
         // Create a DocumentFragment to build with
-        docFrag = document.createDocumentFragment();
+        docFragment = document.createDocumentFragment();
 
         // Create modal element
         this.modal = document.createElement("div");
@@ -95,7 +95,7 @@
         if (this.options.overlay === true) {
             this.overlay = document.createElement("div");
             this.overlay.className = "royce-overlay " + this.options.className;
-            docFrag.appendChild(this.overlay);
+            docFragment.appendChild(this.overlay);
         }
 
         // Create content area and append to modal
@@ -105,12 +105,40 @@
         this.modal.appendChild(contentHolder);
 
         // Append modal to DocumentFragment
-        docFrag.appendChild(this.modal);
+        docFragment.appendChild(this.modal);
 
         // Append DocumentFragment to body
-        document.body.appendChild(docFrag);
+        document.body.appendChild(docFragment);
 
     }
+    // pass getURL() method as object into buildOut() method
+   /* function getURL(url, success, error) {
+        // Feature detection
+        if ( !window.XMLHttpRequest ) return;
+        // Create new request
+        var request = new XMLHttpRequest();
+        // Setup callbacks
+        request.onreadystatechange = function () {
+            // if request is complete
+            if(request.readyState === 4){
+                // if request failed
+                if(request.readyState !== 200){
+                    if(error & typeof error === 'function' ){
+                        error();
+                    }
+                    return;
+                }
+            }
+        };
+        // Get the HTML
+        request.open( 'GET', url );
+        request.send();
+
+
+    }*/
+
+
+    //Extend Default
 
     function extendDefaults(source, properties) {
         var property;
@@ -143,14 +171,19 @@
 
 }());
 
-var myContent = document.getElementById('content');
 
+
+
+// create text content based modal
+var textContent = document.getElementById('content');
 var myModal = new Modal({
-    content: myContent
+    content: textContent
 });
-
 var triggerButton = document.getElementById('trigger');
 
 triggerButton.addEventListener('click', function() {
     myModal.open();
 });
+
+// create ajax content based modal ( input of form element posts data to server );
+
